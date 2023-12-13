@@ -1,6 +1,6 @@
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom'; // we are importing the Redirect and Route components from the react-router-dom library. We will use these components to set up the routing for our app.
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
+import { IonReactRouter } from '@ionic/react-router'; // we are importing the IonReactRouter component from the @ionic/react-router library. It's a component that we will use to wrap our app's routing.
 import Home from './pages/Courses';
 
 /* Core CSS required for Ionic components to work properly */
@@ -21,18 +21,30 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import Courses from './pages/Courses';
+import Courses from './pages/Courses'; // we are importing the Courses component from the src/pages/Courses.tsx file. We will use this component to set up the routing for our app.
+import CourseGoals from './pages/CourseGoals'; // we are importing the CourseGoals component from the src/pages/CourseGoals.tsx file. We will use this component to set up the routing for our app.
 
 setupIonicReact();
 
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <Route path="">
-        <Courses />
-      </Route>
+      <IonRouterOutlet>
+        <Route path="/" exact>
+          <Courses />
+        </Route>
+        <Route path="/course-goals">
+          <CourseGoals />
+        </Route>
+      </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
 );
 
 export default App;
+
+// IonReactRouter component is a component that we will use to wrap our app's routing. We will use the Route component to set up the routing for our app.
+// The Route component takes two props: path and component. The path prop is the path that we want to route to. The component prop is the component that we want to render when the path is matched. In this case, we want to render the Courses component when the path is matched.
+// We also need to wrap the Route component in the IonRouterOutlet component. The IonRouterOutlet component is a component that we will use to wrap our app's routing.
+
+// The "exact" prop is a prop that we can pass to the Route component. It's a boolean prop that we can set to true or false. If we set it to true, then the Route component will only render the component that we passed to the component prop if the path prop matches the path exactly. If we set it to false, then the Route component will render the component that we passed to the component prop if the path prop matches the path exactly or if the path prop matches the path plus any additional path segments. In this case, we want to set it to true because we only want to render the Courses component if the path prop matches the path exactly.

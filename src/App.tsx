@@ -1,6 +1,18 @@
 import { Redirect, Route } from 'react-router-dom'; // we are importing the Redirect and Route components from the react-router-dom library. We will use these components to set up the routing for our app.
-import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
+import {
+  IonApp,
+  IonRouterOutlet,
+  setupIonicReact,
+  IonTabBar,
+  IonTabButton,
+  IonIcon,
+  IonLabel,
+  IonTabs,
+} from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router'; // we are importing the IonReactRouter component from the @ionic/react-router library. It's a component that we will use to wrap our app's routing.
+
+import { list, trophyOutline } from 'ionicons/icons';
+
 import Home from './pages/Courses';
 
 /* Core CSS required for Ionic components to work properly */
@@ -22,6 +34,7 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import Courses from './pages/Courses'; // we are importing the Courses component from the src/pages/Courses.tsx file. We will use this component to set up the routing for our app.
+import AllGoals from './pages/AllGoals'; // we are importing the AllGoals component from the src/pages/AllGoals.tsx file. We will use this component to set up the routing for our app.
 import CourseGoals from './pages/CourseGoals'; // we are importing the CourseGoals component from the src/pages/CourseGoals.tsx file. We will use this component to set up the routing for our app.
 
 setupIonicReact();
@@ -29,14 +42,30 @@ setupIonicReact();
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonRouterOutlet>
-        <Route path="/" exact>
-          <Courses />
-        </Route>
-        <Route path="/course-goals">
-          <CourseGoals />
-        </Route>
-      </IonRouterOutlet>
+      <IonTabs>
+        <IonRouterOutlet>
+          <Route path="/courses" exact>
+            <Courses />
+          </Route>
+          <Route path="/all-goals" exact>
+            <AllGoals />
+          </Route>
+          <Route path="/course-goals">
+            <CourseGoals />
+          </Route>
+          <Redirect to="/courses" />
+        </IonRouterOutlet>
+        <IonTabBar slot="bottom">
+          <IonTabButton tab="all-goals" href="/all-goals">
+            <IonIcon icon={list} />
+            <IonLabel>All Goals</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="courses" href="/courses">
+            <IonIcon icon={trophyOutline} />
+            <IonLabel>Courses</IonLabel>
+          </IonTabButton>
+        </IonTabBar>
+      </IonTabs>
     </IonReactRouter>
   </IonApp>
 );

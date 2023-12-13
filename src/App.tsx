@@ -77,3 +77,13 @@ export default App;
 // We also need to wrap the Route component in the IonRouterOutlet component. The IonRouterOutlet component is a component that we will use to wrap our app's routing.
 
 // The "exact" prop is a prop that we can pass to the Route component. It's a boolean prop that we can set to true or false. If we set it to true, then the Route component will only render the component that we passed to the component prop if the path prop matches the path exactly. If we set it to false, then the Route component will render the component that we passed to the component prop if the path prop matches the path exactly or if the path prop matches the path plus any additional path segments. In this case, we want to set it to true because we only want to render the Courses component if the path prop matches the path exactly.
+
+// The Redirect component is a component that we will use to set up the routing for our app, it serves to redirect the user to a specific path when none of the paths defined in the Route components match the path that the user is trying to access.
+
+// The IonTabs component is a component that we will use to wrap our app's routing. We will use the IonTabs component to wrap the JSX code that we want to render. Tabs are a top level navigation component to implement a tab-based navigation. The component is a container of individual Tab components. https://ionicframework.com/docs/api/tabs
+
+// The tab bar is a UI component that contains a set of tab buttons. A tab bar must be provided inside of tabs to communicate with each tab. https://ionicframework.com/docs/api/tab-bar
+
+// The IonTabButton is a UI component that is placed inside of a tab bar. The tab button can specify the layout of the icon and label and connect to a tab view. https://ionicframework.com/docs/api/tab-button
+
+// See the tabs documentation for more details on configuring tabs: https://ionicframework.com/docs/api/tabs

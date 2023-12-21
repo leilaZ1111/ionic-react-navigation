@@ -3,12 +3,23 @@ import {
   IonHeader,
   IonToolbar,
   IonTitle,
-  IonButton,
+  IonGrid,
+  IonCard,
+  IonCardContent,
   IonPage,
+  IonCol,
+  IonRow,
+  IonButton,
 } from '@ionic/react';
 
 import React from 'react';
 // import { useHistory } from 'react-router-dom'; // (ALTERNATIVE) we are importing the useHistory hook from the react-router-dom library. We will use this hook to set up the routing for our app.
+
+const COURSE_DATA = [
+  { id: 'c1', title: 'Ionic + React - The Practical Guide' },
+  { id: 'c2', title: 'React.js - The Complete Guide' },
+  { id: 'c3', title: 'JavaScript - The Complete Guide' },
+];
 
 const Courses: React.FC = () => {
   // const history = useHistory(); // (ALTERNATIVE) we are calling the useHistory hook. We will use this hook to set up the routing for our app.
@@ -25,11 +36,20 @@ const Courses: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <h2> This works - Courses page!</h2>
-        <div>
-          <IonButton routerLink="/course-goals">To Course Goals</IonButton>
-          {/* <IonButton onClick={changePageHandler}>To Course Goals</IonButton> */}
-        </div>
+        <IonGrid>
+          {COURSE_DATA.map((course) => (
+            <IonRow key={course.id}>
+              <IonCol size-md="4" offset-md="4">
+                <IonCard>
+                  <IonCardContent>
+                    <h2 className="ion-text-center">{course.title}</h2>
+                    <IonButton routerLink="">View Course Goals</IonButton>
+                  </IonCardContent>
+                </IonCard>
+              </IonCol>
+            </IonRow>
+          ))}
+        </IonGrid>
       </IonContent>
     </IonPage>
   );

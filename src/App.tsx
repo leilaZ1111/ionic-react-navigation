@@ -33,6 +33,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import './theme/theme.css';
 import Courses from './pages/Courses'; // we are importing the Courses component from the src/pages/Courses.tsx file. We will use this component to set up the routing for our app.
 import AllGoals from './pages/AllGoals'; // we are importing the AllGoals component from the src/pages/AllGoals.tsx file. We will use this component to set up the routing for our app.
 import CourseGoals from './pages/CourseGoals'; // we are importing the CourseGoals component from the src/pages/CourseGoals.tsx file. We will use this component to set up the routing for our app.

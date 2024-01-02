@@ -8,8 +8,15 @@ import {
   IonBackButton,
   IonButtons,
 } from '@ionic/react';
+import { useParams } from 'react-router-dom'; // we are importing the useParams hook from the react-router-dom library. We will use this hook to set up the routing for our app.
+
+import { COURSE_DATA } from './Courses';
 
 const CourseGoals: React.FC = () => {
+  const selectedCourseId = useParams<{ courseId: string }>().courseId; // we are calling the useParams hook. We will use this hook to set up the routing for our app.
+
+  const selectedCourse = COURSE_DATA.find((c) => c.id === selectedCourseId);
+
   return (
     <IonPage>
       <IonHeader>
@@ -17,7 +24,9 @@ const CourseGoals: React.FC = () => {
           <IonButtons slot="start">
             <IonBackButton defaultHref="/" />
           </IonButtons>
-          <IonTitle>Course Goals</IonTitle>
+          <IonTitle>
+            {selectedCourse ? selectedCourse.title : 'No course found!'}
+          </IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>

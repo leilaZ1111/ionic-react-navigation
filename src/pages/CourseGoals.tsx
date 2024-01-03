@@ -10,8 +10,14 @@ import {
   IonList,
   IonItem,
   IonLabel,
+  IonButton,
+  IonIcon,
+  IonItemSliding,
+  IonItemOptions,
+  IonItemOption,
 } from '@ionic/react';
 import { useParams } from 'react-router-dom'; // we are importing the useParams hook from the react-router-dom library. We will use this hook to set up the routing for our app.
+import { create, trash } from 'ionicons/icons';
 
 import { COURSE_DATA } from './Courses';
 
@@ -20,6 +26,14 @@ const CourseGoals: React.FC = () => {
 
   const selectedCourse = COURSE_DATA.find((c) => c.id === selectedCourseId);
 
+  const detleteGoalHandler = () => {
+    console.log('Deleted...');
+  };
+
+  const startEditGoalHandler = (event: React.MouseEvent) => {
+    event.stopPropagation(); // we are calling the stopPropagation() method on the event object. We are calling the stopPropagation() method on the event object because we want to stop the event from bubbling up to the parent element.
+    console.log('Editing...');
+  };
   return (
     <IonPage>
       <IonHeader>
@@ -36,10 +50,35 @@ const CourseGoals: React.FC = () => {
         <IonList>
           {selectedCourse &&
             selectedCourse.goals.map((goal) => (
-              <IonItem key={goal.id} lines="full">
-                <IonLabel>{goal.text}</IonLabel>
-              </IonItem>
+              <IonItemSliding key={goal.id}>
+                <IonItemOptions side="start">
+                  <IonItemOption onClick={detleteGoalHandler} color="danger">
+                    <IonIcon slot="icon-only" icon={trash} />
+                  </IonItemOption>
+                </IonItemOptions>
+                <IonItem
+                  lines="full"
+                  // button
+                  // onClick={detleteItemmHandler}
+                >
+                  <IonLabel>{goal.text}</IonLabel>
+                  {/* <IonButton
+                  fill="clear"
+                  color="dark"
+                  slot="end"
+                  onClick={startEditGoalHandler}
+                >
+                  <IonIcon slot="icon-only" icon={create} />
+                </IonButton> */}
+                </IonItem>
+                <IonItemOptions side="end">
+                  <IonItemOption onClick={startEditGoalHandler}>
+                    <IonIcon slot="icon-only" icon={create} />
+                  </IonItemOption>
+                </IonItemOptions>
+              </IonItemSliding>
             ))}
+          ;
         </IonList>
       </IonContent>
     </IonPage>

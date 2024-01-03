@@ -4,6 +4,8 @@ import {
   IonToolbar,
   IonTitle,
   IonPage,
+  IonButtons,
+  IonMenuButton,
 } from '@ionic/react';
 
 import React from 'react';
@@ -13,6 +15,9 @@ const AllGoals: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
+          <IonButtons slot="start">
+            <IonMenuButton />
+          </IonButtons>
           <IonTitle>All goals</IonTitle>
         </IonToolbar>
       </IonHeader>

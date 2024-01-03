@@ -7,6 +7,9 @@ import {
   IonPage,
   IonBackButton,
   IonButtons,
+  IonList,
+  IonItem,
+  IonLabel,
 } from '@ionic/react';
 import { useParams } from 'react-router-dom'; // we are importing the useParams hook from the react-router-dom library. We will use this hook to set up the routing for our app.
 
@@ -30,7 +33,14 @@ const CourseGoals: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <h2> This works - Course goals page!</h2>
+        <IonList>
+          {selectedCourse &&
+            selectedCourse.goals.map((goal) => (
+              <IonItem key={goal.id} lines="full">
+                <IonLabel>{goal.text}</IonLabel>
+              </IonItem>
+            ))}
+        </IonList>
       </IonContent>
     </IonPage>
   );

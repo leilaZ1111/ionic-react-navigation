@@ -19,14 +19,20 @@ import {
   IonFab,
   isPlatform,
   IonAlert,
+  IonToast,
 } from '@ionic/react';
 import { useParams } from 'react-router-dom'; // we are importing the useParams hook from the react-router-dom library. We will use this hook to set up the routing for our app.
 import { create, trash, addOutline } from 'ionicons/icons';
 
 import { COURSE_DATA } from './Courses';
+import EditModal from '../components/EditModal';
 
 const CourseGoals: React.FC = () => {
-  const [startDeleting, setStartDeleting] = useState(false); // we are calling the useState() hook. We will use this hook to set up the routing for our app. We are passing false to the useState() hook. We are passing false to the useState() hook because we want to set the initial value of the startDetleting state slice to false.
+  const [startDeleting, setStartDeleting] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
+  const [selectedGoal, setSelectedGoal] = useState<any>();
+
   const selectedCourseId = useParams<{ courseId: string }>().courseId; // we are calling the useParams hook. We will use this hook to set up the routing for our app.
 
   const selectedCourse = COURSE_DATA.find((c) => c.id === selectedCourseId);
@@ -35,22 +41,46 @@ const CourseGoals: React.FC = () => {
     setStartDeleting(true);
   };
 
+  const cancelEditGoalHandler = () => {
+    setIsEditing(false);
+    setSelectedGoal(null);
+  };
+
   const startAddGoalHandler = () => {
-    console.log('Adding...');
+    setIsEditing(true);
+    setSelectedGoal(null);
   };
 
   const deleteGoalHandler = () => {
     setStartDeleting(false);
-    console.log('Deleting...');
+    setToastMessage('Deleted goal!');
   };
 
-  const startEditGoalHandler = (event: React.MouseEvent) => {
+  const startEditGoalHandler = (goalId: string, event: React.MouseEvent) => {
     event.stopPropagation(); // we are calling the stopPropagation() method on the event object. We are calling the stopPropagation() method on the event object because we want to stop the event from bubbling up to the parent element.
-    console.log('Editing...');
+    const goal = selectedCourse?.goals.find((g) => g.id === goalId);
+    if (!goal) {
+      return;
+    } // we are checking if the goal is undefined because we want to return early if the goal is undefined.
+    setIsEditing(true);
+    setSelectedGoal(goal);
   };
 
   return (
     <React.Fragment>
+      <EditModal
+        show={isEditing}
+        onCancel={cancelEditGoalHandler}
+        editedGoal={selectedGoal}
+      />
+      <IonToast
+        isOpen={!!toastMessage}
+        message={toastMessage}
+        duration={2000}
+        onDidDismiss={() => {
+          setToastMessage('');
+        }}
+      />
       <IonAlert
         isOpen={startDeleting}
         header="Are you sure?"
@@ -117,7 +147,9 @@ const CourseGoals: React.FC = () => {
                 </IonButton> */}
                   </IonItem>
                   <IonItemOptions side="end">
-                    <IonItemOption onClick={startEditGoalHandler}>
+                    <IonItemOption
+                      onClick={startEditGoalHandler.bind(null, goal.id)}
+                    >
                       <IonIcon slot="icon-only" icon={create} />
                     </IonItemOption>
                   </IonItemOptions>

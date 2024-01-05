@@ -3,26 +3,26 @@ http://ionicframework.com/docs/theming/ */
 
 /** Ionic CSS Variables **/
 :root {
-  --ion-color-primary: #fde90d;
-  --ion-color-primary-rgb: 253, 233, 13;
+  --ion-color-primary: #ffd82f;
+  --ion-color-primary-rgb: 255, 216, 47;
   --ion-color-primary-contrast: #000000;
   --ion-color-primary-contrast-rgb: 0, 0, 0;
-  --ion-color-primary-shade: #dfcd0b;
-  --ion-color-primary-tint: #fdeb25;
+  --ion-color-primary-shade: #e0be29;
+  --ion-color-primary-tint: #ffdc44;
 
-  --ion-color-secondary: #386aff;
-  --ion-color-secondary-rgb: 56, 106, 255;
-  --ion-color-secondary-contrast: #000000;
-  --ion-color-secondary-contrast-rgb: 0, 0, 0;
-  --ion-color-secondary-shade: #315de0;
-  --ion-color-secondary-tint: #4c79ff;
+  --ion-color-secondary: #7450e8;
+  --ion-color-secondary-rgb: 116, 80, 232;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #6646cc;
+  --ion-color-secondary-tint: #8262ea;
 
-  --ion-color-tertiary: #ff8e52;
-  --ion-color-tertiary-rgb: 255, 142, 82;
+  --ion-color-tertiary: #b337ff;
+  --ion-color-tertiary-rgb: 179, 55, 255;
   --ion-color-tertiary-contrast: #000000;
   --ion-color-tertiary-contrast-rgb: 0, 0, 0;
-  --ion-color-tertiary-shade: #e07d48;
-  --ion-color-tertiary-tint: #ff9963;
+  --ion-color-tertiary-shade: #9e30e0;
+  --ion-color-tertiary-tint: #bb4bff;
 
   --ion-color-success: #2dd36f;
   --ion-color-success-rgb: 45, 211, 111;
@@ -38,12 +38,12 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-warning-shade: #e0ac08;
   --ion-color-warning-tint: #ffca22;
 
-  --ion-color-danger: #eb445a;
-  --ion-color-danger-rgb: 235, 68, 90;
+  --ion-color-danger: #e01600;
+  --ion-color-danger-rgb: 229, 31, 58;
   --ion-color-danger-contrast: #000000;
   --ion-color-danger-contrast-rgb: 0, 0, 0;
-  --ion-color-danger-shade: #cf3c4f;
-  --ion-color-danger-tint: #ed576b;
+  --ion-color-danger-shade: #ca1b33;
+  --ion-color-danger-tint: #e8354e;
 
   --ion-color-light: #f4f5f8;
   --ion-color-light-rgb: 244, 245, 248;

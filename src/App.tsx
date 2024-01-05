@@ -40,6 +40,7 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import './theme/theme.css';
 import CourseTabs from './pages/CourseTabs';
+import SideDrawer from './components/SideDrawer';
 import Filter from './pages/Filter'; // we are importing the Filter component from the src/pages/Filter.tsx file. We will use this component to set up the routing for our app.
 
 setupIonicReact();
@@ -47,33 +48,7 @@ setupIonicReact();
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
-      <IonMenu contentId="main">
-        <IonHeader>
-          <IonToolbar>
-            <IonTitle>Course Goals</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <IonContent>
-          <IonList>
-            <IonMenuToggle>
-              <IonItem
-                button
-                routerLink="/courses/all-goals"
-                routerDirection="none"
-              >
-                <IonIcon slot="start" icon={list} />
-                <IonLabel>All Goals</IonLabel>
-              </IonItem>
-            </IonMenuToggle>
-            <IonMenuToggle>
-              <IonItem button routerLink="/filter" routerDirection="none">
-                <IonIcon slot="start" icon={options} />
-                <IonLabel>Filter</IonLabel>
-              </IonItem>
-            </IonMenuToggle>
-          </IonList>
-        </IonContent>
-      </IonMenu>
+      <SideDrawer />
       <IonRouterOutlet id="main">
         <Route path="/filter" exact>
           <Filter />

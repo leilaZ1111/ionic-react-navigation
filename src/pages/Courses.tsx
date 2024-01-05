@@ -4,15 +4,10 @@ import {
   IonToolbar,
   IonTitle,
   IonGrid,
-  IonCard,
-  IonCardContent,
   IonPage,
   IonCol,
   IonRow,
   IonButton,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardSubtitle,
   IonButtons,
   IonIcon,
   isPlatform,
@@ -24,6 +19,7 @@ import React, { useState } from 'react';
 // import { useHistory } from 'react-router-dom'; // (ALTERNATIVE) we are importing the useHistory hook from the react-router-dom library. We will use this hook to set up the routing for our app.
 import { addOutline } from 'ionicons/icons';
 import AddCourseModal from '../components/AddCourseModal';
+import CourseItem from '../components/CourseItem';
 
 export const COURSE_DATA = [
   {
@@ -93,30 +89,11 @@ const Courses: React.FC = () => {
             {COURSE_DATA.map((course) => (
               <IonRow key={course.id}>
                 <IonCol size-md="4" offset-md="4">
-                  <IonCard>
-                    <IonCardHeader>
-                      <IonCardTitle>{course.title}</IonCardTitle>
-                      <IonCardSubtitle>
-                        Enrolled on{' '}
-                        {course.enrolled.toLocaleDateString('en-US', {
-                          year: 'numeric',
-                          month: '2-digit',
-                          day: '2-digit',
-                        })}
-                      </IonCardSubtitle>
-                    </IonCardHeader>
-                    <IonCardContent>
-                      <div className="ion-text-right">
-                        <IonButton
-                          fill="clear"
-                          color="secondary"
-                          routerLink={`/courses/${course.id}`}
-                        >
-                          View Course Goals
-                        </IonButton>
-                      </div>
-                    </IonCardContent>
-                  </IonCard>
+                  <CourseItem
+                    title={course.title}
+                    id={course.id}
+                    enrolmentDate={course.enrolled}
+                  />
                 </IonCol>
               </IonRow>
             ))}

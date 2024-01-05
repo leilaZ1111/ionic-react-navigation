@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
   IonContent,
   IonHeader,
@@ -6,11 +8,32 @@ import {
   IonPage,
   IonButtons,
   IonMenuButton,
+  IonList,
+  IonItem,
+  IonLabel,
 } from '@ionic/react';
 
-import React from 'react';
+import { COURSE_DATA } from './Courses';
 
 const AllGoals: React.FC = () => {
+  const goals = COURSE_DATA.map((course) => {
+    return course.goals.map((goal) => {
+      return {
+        id: goal.id,
+        text: goal.text,
+        courseTitle: course.title,
+      };
+    });
+  }).reduce((goalArr, nestedGoals) => {
+    let updatedGoalArray = goalArr;
+    for (const goal of nestedGoals) {
+      updatedGoalArray = updatedGoalArray.concat(goal);
+    }
+    return updatedGoalArray;
+  }, []);
+
+  console.log(goals);
+
   return (
     <IonPage>
       <IonHeader>
@@ -22,7 +45,16 @@ const AllGoals: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <h2> This works - All goals page!</h2>
+        <IonList>
+          {goals.map((goal) => (
+            <IonItem key={goal.id}>
+              <IonLabel>
+                <h2>{goal.text}</h2>
+                <p>{goal.courseTitle}</p>
+              </IonLabel>
+            </IonItem>
+          ))}
+        </IonList>
       </IonContent>
     </IonPage>
   );

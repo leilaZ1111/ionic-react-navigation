@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   IonContent,
   IonHeader,
@@ -33,6 +33,8 @@ const CourseGoals: React.FC = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [selectedGoal, setSelectedGoal] = useState<any>();
 
+  const slidingOptionsRef = useRef<HTMLIonItemSlidingElement>(null); // we are calling the useRef hook. We will use this hook to set up the routing for our app.
+
   const selectedCourseId = useParams<{ courseId: string }>().courseId; // we are calling the useParams hook. We will use this hook to set up the routing for our app.
 
   const selectedCourse = COURSE_DATA.find((c) => c.id === selectedCourseId);
@@ -59,6 +61,7 @@ const CourseGoals: React.FC = () => {
   const startEditGoalHandler = (goalId: string, event: React.MouseEvent) => {
     event.stopPropagation(); // we are calling the stopPropagation() method on the event object. We are calling the stopPropagation() method on the event object because we want to stop the event from bubbling up to the parent element.
     const goal = selectedCourse?.goals.find((g) => g.id === goalId);
+    slidingOptionsRef.current?.closeOpened();
     if (!goal) {
       return;
     } // we are checking if the goal is undefined because we want to return early if the goal is undefined.
@@ -122,7 +125,7 @@ const CourseGoals: React.FC = () => {
           {selectedCourse && (
             <IonList>
               {selectedCourse.goals.map((goal) => (
-                <IonItemSliding key={goal.id}>
+                <IonItemSliding key={goal.id} ref={slidingOptionsRef}>
                   <IonItemOptions side="start">
                     <IonItemOption
                       onClick={startDetleteGoalHandler}

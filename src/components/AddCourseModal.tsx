@@ -35,7 +35,6 @@ const AddCourseModal: React.FC<{
       !enteredTitle ||
       !selectedDate ||
       enteredTitle.toString().trim().length === 0 ||
-      // selectedDate.trim().length === 0
       (typeof selectedDate === 'string' && selectedDate.trim().length === 0)
     ) {
       setError('Please enter a valid title and select a valid date');

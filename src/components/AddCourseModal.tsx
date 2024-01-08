@@ -16,10 +16,13 @@ import {
   IonText,
 } from '@ionic/react';
 
-const AddCourseModal: React.FC<{ show: boolean; onCancel: () => void }> = (
-  props
-) => {
-  const [error, setError] = useState(''); //< string | null>(null);
+const AddCourseModal: React.FC<{
+  show: boolean;
+  onCancel: () => void;
+  onSave: (title: string, date: Date) => void;
+}> = (props) => {
+  const [error, setError] = useState('');
+  // const [error, setError] = useState('') < string | null> (null);
 
   const titleRef = useRef<HTMLIonInputElement>(null);
   const dateRef = useRef<HTMLIonDatetimeElement>(null);
@@ -32,12 +35,15 @@ const AddCourseModal: React.FC<{ show: boolean; onCancel: () => void }> = (
       !enteredTitle ||
       !selectedDate ||
       enteredTitle.toString().trim().length === 0 ||
+      // selectedDate.trim().length === 0
       (typeof selectedDate === 'string' && selectedDate.trim().length === 0)
     ) {
       setError('Please enter a valid title and select a valid date');
       return;
     }
     setError('');
+
+    props.onSave(enteredTitle.toString(), new Date(selectedDate));
   };
 
   return (
